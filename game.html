@@ -1,0 +1,214 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/game.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height">
+    <title>车惠买翻牌游戏</title>
+  </head>
+  <body>
+    <div class="title">车惠买品牌购车嘉年华</div>
+    <div class="container">
+      <div class="box viewport-flip" id="box1" onclick="kd_rotate(1)">
+        <a href="javascript:;">
+          <img src="image/front.png" alt="正面" class="list flip out">
+        </a>
+        <a href="javascript:;">
+          <img src="image/back.png" alt="正面" class="list flip in">
+        </a>
+      </div>
+      <div class="box viewport-flip" id="box2" onclick="kd_rotate(2)">
+        <a href="javascript:;">
+          <img src="image/front.png" alt="正面" class="list flip out">
+        </a>
+        <a href="javascript:;">
+          <img src="image/back.png" alt="正面" class="list flip in">
+        </a>
+      </div>
+      <div class="box viewport-flip" id="box3" onclick="kd_rotate(3)">
+        <a href="javascript:;">
+          <img src="image/front.png" alt="正面" class="list flip out">
+        </a>
+        <a href="javascript:;">
+          <img src="image/back.png" alt="正面" class="list flip in">
+        </a>
+      </div>
+      <div class="box viewport-flip" id="box4" onclick="kd_rotate(4)">
+        <a href="javascript:;">
+          <img src="image/front.png" alt="正面" class="list flip out">
+        </a>
+        <a href="javascript:;">
+          <img src="image/back.png" alt="正面" class="list flip in">
+        </a>
+      </div>
+      <div class="box viewport-flip" id="box5" onclick="kd_rotate(5)">
+        <a href="javascript:;">
+          <img src="image/front.png" alt="正面" class="list flip out">
+        </a>
+        <a href="javascript:;">
+          <img src="image/back.png" alt="正面" class="list flip in">
+        </a>
+      </div>
+      <div class="box viewport-flip" id="box6" onclick="kd_rotate(6)">
+        <a href="javascript:;">
+          <img src="image/front.png" alt="正面" class="list flip out">
+        </a>
+        <a href="javascript:;">
+          <img src="image/back.png" alt="正面" class="list flip in">
+        </a>
+      </div>
+      <div class="box viewport-flip" id="box7" onclick="kd_rotate(7)">
+        <a href="javascript:;">
+          <img src="image/front.png" alt="正面" class="list flip out">
+        </a>
+        <a href="javascript:;">
+          <img src="image/back.png" alt="正面" class="list flip in">
+        </a>
+      </div>
+      <div class="box viewport-flip" id="box8" onclick="kd_rotate(8)">
+        <a href="javascript:;">
+          <img src="image/front.png" alt="正面" class="list flip out">
+        </a>
+        <a href="javascript:;">
+          <img src="image/back.png" alt="正面" class="list flip in">
+        </a>
+      </div>
+      <div class="box viewport-flip" id="box9" onclick="kd_rotate(9)">
+        <a href="javascript:;">
+          <img src="image/front.png" alt="正面" class="list flip out">
+        </a>
+        <a href="javascript:;">
+          <img src="image/back.png" alt="正面" class="list flip in">
+        </a>
+      </div>
+    </div>
+
+    <div class="ctr_bg">
+      <div class="ctr_panel">
+        <div class="ctr_title">设置中奖牌</div>
+        <table style="margin-top:20px;" width="43%" align="center">
+          <tr>
+            <td align="center" height="50" valign="middle">
+              <input type="text" class="ctr_input" placeholder="中奖1,不中0">
+            </td>
+            <td align="center" valign="middle">
+              <input type="text" class="ctr_input" placeholder="中奖1,不中奖填0">
+            </td>
+            <td align="center" valign="middle">
+              <input type="text" class="ctr_input" placeholder="中奖1,不中0">
+            </td>
+          </tr>
+          <tr>
+            <td align="center" height="50" valign="middle">
+              <input type="text" class="ctr_input" placeholder="中奖1,不中0">
+            </td>
+            <td align="center" valign="middle">
+              <input type="text" class="ctr_input" placeholder="中奖1,不中0">
+            </td>
+            <td align="center" valign="middle">
+              <input type="text" class="ctr_input" placeholder="中奖1,不中0">
+            </td>
+          </tr>
+          <tr>
+            <td align="center" height="50" valign="middle">
+              <input type="text" class="ctr_input" placeholder="中奖1,不中0">
+            </td>
+            <td align="center" valign="middle">
+              <input type="text" class="ctr_input" placeholder="中奖1,不中0">
+            </td>
+            <td align="center" valign="middle">
+              <input type="text" class="ctr_input" placeholder="中奖1,不中0">
+            </td>
+          </tr>
+        </table>
+        <div class="ctr_confirm" onclick="go()">确认配置</div>
+      </div>
+    </div>
+
+  </body>
+  <script src="js/jquery.min.js"></script>
+  <script>
+  // 在前面显示的元素，隐藏在后面的元素
+  eleBack = new Array(9);
+  eleFront = new Array(9);
+
+  function funBackOrFront(index)
+  {
+    var eleList = $("#box"+index+" .list");
+  	eleList.each(function() {
+  		if ($(this).hasClass("out")) {
+  			eleBack[index-1] = $(this);
+  		} else {
+  			eleFront[index-1] = $(this);
+  		}
+  	});
+  };
+
+  //初始化前后元素
+  var i=1;
+  while(i<10)
+  {
+    funBackOrFront(i);
+    i++;
+  }
+
+  //点击事件响应函数
+  function kd_rotate(index)
+  {
+    eleFront[index-1].addClass("out").removeClass("in");
+  	setTimeout(function() {
+  		eleBack[index-1].addClass("in").removeClass("out");
+  		funBackOrFront(index);
+  	}, 225);
+  	return false;
+  }
+
+  var key_count = 0;
+  //监听打开设置的按键
+  $(document).ready(function(){
+        document.onkeydown = function()
+        {
+            var oEvent = window.event;
+            if (oEvent.shiftKey && oEvent.ctrlKey) {
+                if(key_count==0)//打开设置面板
+                {
+                  $(".ctr_bg").fadeIn();
+                  key_count=1;
+                }
+                else
+                {
+                  $(".ctr_bg").fadeOut()
+                  key_count=0;
+                }
+            }
+        }
+    }
+  );
+
+  //设置奖项完毕
+  function go()
+  {
+    //检查设置是否完成
+    var setting_ok = 0;
+    $("input").each(function(){
+      if($(this).val().length==1)
+      {
+        if($(this).val()==0||$(this).val()==1)
+        {
+          setting_ok++;
+        }
+      }
+    });
+    if(setting_ok==9)//设置正确
+    {
+      //隐藏设置面板
+      $(".ctr_bg").fadeOut();
+      key_count=0;
+    }
+    else
+    {
+      alert("中奖牌设置错误");
+    }
+  }
+
+  </script>
+</html>
